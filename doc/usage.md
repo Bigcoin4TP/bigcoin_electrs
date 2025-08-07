@@ -30,6 +30,9 @@ Otherwise, [`~/.bitcoin/.cookie`](https://github.com/bitcoin/bitcoin/blob/021218
 
 ## Usage
 
+cargo run --release -- -vvv --timestamp --db-dir ./db --daemon-dir /Users/admin/Library/Application\ Support/Bigcoin  --cookie "edricnguyen:Bigcoin@20242028" --network testnet
+
+
 First index sync should take ~1.5 hours:
 ```bash
 $ cargo run --release -- -vvv --timestamp --db-dir ./db [--cookie="USER:PASSWORD"]

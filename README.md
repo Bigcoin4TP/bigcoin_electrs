@@ -80,6 +80,44 @@ Additional options with the `electrum-discovery` feature:
 
 See `$ cargo run --release --bin electrs -- --help` for the full list of options.
 
+
+
+
+docker build 
+
+1. for bigcoin 
+docker build -t thunderbird2299/electrs-bigcoin:latest .
+docker push thunderbird2299/electrs-bigcoin:latest
+
+2. for bigcoin liquid
+
+docker build -f Dockerfile.liquid -t thunderbird2299/electrs-liquid:latest .
+docker push thunderbird2299/electrs-liquid:latest
+
+
+docker buildx create --use --name amd-builder
+docker buildx build --platform linux/amd64 -t thunderbird2299/bigcoin_electrs:amd64 --load .
+
+
+docker buildx build \
+  --platform linux/amd64 \
+  -t thunderbird2299/bigcoin_electrs:amd64 \
+  --push .
+
+
+docker buildx build \
+  --platform linux/arm64 \
+  -t thunderbird2299/bigcoin_electrs:arm64 \
+  --push .
+
+
+docker manifest create thunderbird2299/bigcoin_electrs:latest \
+  --amend thunderbird2299/bigcoin_electrs:amd64 \
+  --amend thunderbird2299/bigcoin_electrs:arm64
+
+docker manifest push thunderbird2299/bigcoin_electrs:latest
+
+
 ## License
 
 MIT
