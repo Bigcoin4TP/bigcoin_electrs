@@ -91,3 +91,6 @@ Stats for issued assets:
 
 Stats for the native asset:
  * `"z{issued-asset}" → "{native_stats}{blockhash}"` (where `native_stats` is composed of `tx_count`, `peg_in_count`, `peg_in_amount`, `peg_out_count`, `peg_out_amount`, `burn_count` and `burn_amount`)
+
+
+cargo run --release -- -vvv --timestamp --db-dir ./db --daemon-dir /Users/admin/Library/Application\ Support/Bigcoin  --cookie "edricnguyen:Bigcoin@20242028" --network testnet

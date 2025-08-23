@@ -17,6 +17,7 @@ use elementsd::{self as noded, ElementsD as NodeD};
 
 use noded::bitcoincore_rpc::{self, RpcApi};
 
+use electrs::config::RpcLogging;
 use electrs::{
     chain::{Address, BlockHash, Network, Txid},
     config::Config,
@@ -27,7 +28,6 @@ use electrs::{
     rest,
     signal::Waiter,
 };
-use electrs::config::RpcLogging;
 
 pub struct TestRunner {
     config: Arc<Config>,
