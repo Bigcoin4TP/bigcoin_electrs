@@ -118,6 +118,8 @@ docker manifest create thunderbird2299/bigcoin_electrs:latest \
 docker manifest push thunderbird2299/bigcoin_electrs:latest
 
 
+docker run 
+
 ## License
 
 MIT

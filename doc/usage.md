@@ -32,6 +32,12 @@ Otherwise, [`~/.bitcoin/.cookie`](https://github.com/bitcoin/bitcoin/blob/021218
 
 cargo run --release -- -vvv --timestamp --db-dir ./db --daemon-dir /Users/admin/Library/Application\ Support/Bigcoin  --cookie "edricnguyen:Bigcoin@20242028" --network testnet
 
+docker run --network testnet \
+             --volume /Users/admin/Library/Application\ Support/Bigcoin:/home/user/.bitcoin:ro \
+             --volume $PWD:/home/user \
+             --rm -i -t electrs-app
+
+
 
 First index sync should take ~1.5 hours:
 ```bash
@@ -85,7 +91,7 @@ $ electrum --oneserver --server=127.0.0.1:50002:s
 ## Docker
 ```bash
 $ docker build -t electrs-app .
-$ docker run --network host \
+docker run --network host \
              --volume /home/roman/.bitcoin:/home/user/.bitcoin:ro \
              --volume $PWD:/home/user \
              --rm -i -t electrs-app
