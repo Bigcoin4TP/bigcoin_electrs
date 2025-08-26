@@ -39,6 +39,18 @@ docker run --network testnet \
 
 
 
+docker run -d \
+  --name electrs \
+  -p 3000:3000 \
+  -v ./electrs-data:/data \
+  -e ELECTRS_NETWORK=testnet \
+  -e ELECTRS_RPC_HOST=bitcoin-node \
+  -e ELECTRS_RPC_PORT=16332 \
+  -e ELECTRS_RPC_USER=edricnguyen \
+  -e ELECTRS_RPC_PASS=Bigcoin@20242028 \
+  thunderbird2299/electrs-bigcoin:latest
+
+
 First index sync should take ~1.5 hours:
 ```bash
 $ cargo run --release -- -vvv --timestamp --db-dir ./db [--cookie="USER:PASSWORD"]
@@ -112,3 +124,6 @@ scrape_configs:
 $ sudo systemctl restart prometheus
 $ firefox 'http://localhost:9090/graph?g0.range_input=1h&g0.expr=index_height&g0.tab=0'
 ```
+
+
+

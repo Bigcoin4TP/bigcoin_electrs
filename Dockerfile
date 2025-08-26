@@ -20,8 +20,8 @@ WORKDIR /usr/src/electrs
 # Copy all source code to the container
 COPY . .
 
-# Build electrs with Liquid feature for flexibility
-RUN cargo install --locked --path . --features liquid --root /usr/local
+# Build electrs without restricting to liquid feature
+RUN cargo install --locked --path . --root /usr/local
 
 # Use a slim runtime image
 FROM debian:bullseye-slim
@@ -39,4 +39,4 @@ COPY --from=builder /usr/local/bin/electrs /usr/local/bin/electrs
 EXPOSE 3000 4224 50001
 
 # Run electrs with dynamic configuration based on NETWORK and ELECTRS_ARGS
-CMD ["sh", "-c", "if [ \"$NETWORK\" = \"liquid\" ]; then electrs --features liquid --network liquid --daemon-dir /root/.liquid -vvvv --http-addr 0.0.0.0:3000 --electrum-rpc-addr 0.0.0.0:50001 $ELECTRS_ARGS; else electrs --daemon-dir /root/.bitcoin -vvvv --http-addr 0.0.0.0:3000 --electrum-rpc-addr 0.0.0.0:50001 $ELECTRS_ARGS; fi"]
+CMD ["sh", "-c", "electrs --daemon-dir /root/.bitcoin -vvvv --http-addr 0.0.0.0:3000 --electrum-rpc-addr 0.0.0.0:50001 $ELECTRS_ARGS"]
